@@ -36,6 +36,18 @@ void main() {
       "type": "Event",
       "url": "https://nookipedia.com/wiki/New_Year's_Day"
     },
+    {
+      "event": "Bug-Off (Southern Hemisphere)",
+      "date": "2022-02-19",
+      "type": "Event",
+      "url": "https://nookipedia.com/wiki/Bug-Off"
+    },
+    {
+      "event": "Last day of winter (Northern Hemisphere)",
+      "date": "2022-02-24",
+      "type": "Season",
+      "url": "https://nookipedia.com/wiki/Winter"
+    }
   ];
 
   final events = [
@@ -49,6 +61,18 @@ void main() {
       "New Year's Day",
       DateTime.parse("2022-01-01"),
       EventType.event,
+      "https://nookipedia.com/wiki/New_Year's_Day",
+    ),
+    AnimalCrossingEvent(
+      "Bug-Off (Southern Hemisphere)",
+      DateTime.parse("2022-02-19"),
+      EventType.event,
+      "https://nookipedia.com/wiki/Bug-Off",
+    ),
+    AnimalCrossingEvent(
+      "Last day of winter (Northern Hemisphere)",
+      DateTime.parse("2022-02-24"),
+      EventType.season,
       "https://nookipedia.com/wiki/New_Year's_Day",
     )
   ];
@@ -73,7 +97,14 @@ void main() {
         ),
       );
 
-      expect(await eventsService.fetchDetails(), events);
+      var actualEvents = await eventsService.fetchDetails();
+      expect(actualEvents, events);
+      expect(actualEvents.map((e) => e.hemisphere), [
+        Hemisphere.both,
+        Hemisphere.both,
+        Hemisphere.southern,
+        Hemisphere.northern,
+      ]);
 
       verify(dio.get(resourceUrl,
               queryParameters: {}, options: anyNamed('options')))

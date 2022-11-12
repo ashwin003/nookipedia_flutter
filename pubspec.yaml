@@ -1,6 +1,6 @@
 name: nookipedia_flutter
 description: Flutter wrapper for Nookipedia API.
-version: 0.0.1
+version: 0.1.1
 homepage:
 
 environment:

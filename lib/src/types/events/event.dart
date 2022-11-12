@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:nookipedia_flutter/src/types/events/index.dart';
+import 'hemisphere.dart';
+
+import 'event_type.dart';
 
 part 'event.g.dart';
 
@@ -17,6 +19,25 @@ class AnimalCrossingEvent {
   /// Link to the respective Nookipedia article.
   final String url;
 
+  String get parsedEvent => _removeHemisphere(event);
+
+  Hemisphere get hemisphere {
+    if (!_regex.hasMatch(event)) return Hemisphere.both;
+    var match = _regex
+        .firstMatch(event)![0]!
+        .replaceFirst("(", "")
+        .replaceFirst(")", "")
+        .replaceFirst(" Hemisphere", "");
+    switch (match) {
+      case "Northern":
+        return Hemisphere.northern;
+      case "Southern":
+        return Hemisphere.southern;
+      default:
+        throw Exception("Invalid event caught $event");
+    }
+  }
+
   AnimalCrossingEvent(
     this.event,
     this.date,
@@ -28,6 +49,11 @@ class AnimalCrossingEvent {
       _$AnimalCrossingEventFromJson(json);
 
   Map<String, dynamic> toJson() => _$AnimalCrossingEventToJson(this);
+
+  static final RegExp _regex = RegExp(r'\((\w{3}thern Hemisphere\))');
+
+  static String _removeHemisphere(Object obj) =>
+      obj.toString().replaceFirst(_regex, '').trim();
 
   @override
   bool operator ==(Object other) =>

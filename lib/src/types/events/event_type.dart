@@ -17,5 +17,8 @@ enum EventType {
 
   /// The birthday of a villager or special character.
   @JsonValue("Birthday")
-  birthday
+  birthday,
+
+  @JsonValue("Season")
+  season
 }

@@ -1,4 +1,4 @@
-## 0.0.1
+## 0.1.0
 
 Contains wrapper methods for the following endpoints:
 1. Artwork
@@ -16,3 +16,7 @@ Pending wrappers:
 1. Insects
 2. Fish
 3. Sea Creatures
+
+
+# 0.1.1
+Updated events API to simplify filtering events for a specific hemisphere

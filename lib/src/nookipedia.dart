@@ -72,6 +72,15 @@ class NookipediaClient {
   /// Provides services related to the `recipes` in the Animal Crossing series.
   late RecipeService recipes;
 
+  /// Provides services related to the `sea creatures` in the Animal Crossing series.
+  late SeaCreatureService seaCreatures;
+
+  /// Provides services related to the `fishes` in the Animal Crossing series.
+  late FishService fish;
+
+  /// Provides services related to the `insects` in the Animal Crossing series.
+  late InsectService insects;
+
   void _init(String apiKey, String version) {
     final dio = Dio(
       BaseOptions(
@@ -109,6 +118,21 @@ class NookipediaClient {
       dio: dio,
     );
     recipes = RecipeServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
+    seaCreatures = SeaCreatureServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
+    fish = FishServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
+    insects = InsectServiceImpl(
       apiKey: apiKey,
       version: version,
       dio: dio,

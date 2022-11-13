@@ -11,12 +11,16 @@ Contains wrapper methods for the following endpoints:
 8. Recipes
 9. Tools
 10. Villagers
+11. Insects
+12. Fish
+13. Sea Creatures
 
 Pending wrappers:
-1. Insects
-2. Fish
-3. Sea Creatures
+1. Fossil
 
 
 # 0.1.1
 Updated events API to simplify filtering events for a specific hemisphere
+
+# 0.2.1
+Added wrapper methods for critter endpoints (fish, insects, sea creatures)

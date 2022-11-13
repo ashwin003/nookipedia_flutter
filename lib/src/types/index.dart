@@ -1,4 +1,5 @@
 export 'clothing/index.dart';
+export 'critter/index.dart';
 export 'common/index.dart';
 export 'events/index.dart';
 export 'furniture/index.dart';

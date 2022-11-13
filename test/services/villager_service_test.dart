@@ -45,6 +45,55 @@ void main() {
     }
   ];
 
+  final villagerNHDetailsJson = [
+    {
+      "name": "Ace",
+      "url": "https://nookipedia.com/wiki/Ace",
+      "alt_name": "",
+      "title_color": "0961f6",
+      "text_color": "fffce9",
+      "id": "brd09",
+      "image_url": "https://dodo.ac/np/images/9/91/Ace_amiibo.png",
+      "species": "Bird",
+      "personality": "Jock",
+      "gender": "Male",
+      "birthday_month": "August",
+      "birthday_day": "11",
+      "sign": "Leo",
+      "quote":
+          "If you love something, let it go. Then chase it down. What were you thinking?",
+      "phrase": "ace",
+      "clothing": "Kung-Fu Tee",
+      "islander": false,
+      "debut": "DNM",
+      "prev_phrases": [],
+      "nh_details": {
+        "image_url": "https://dodo.ac/np/images/9/91/Ace_amiibo.png",
+        "photo_url":
+            "https://dodo.ac/np/images/6/61/Ace%27s_Poster_NH_Texture.png",
+        "icon_url": "https://dodo.ac/np/images/4/4f/Ace_NH_Villager_Icon.png",
+        "quote":
+            "If you love something, let it go. Then chase it down. What were you thinking?",
+        "sub-personality": "A",
+        "catchphrase": "ace",
+        "clothing": "Kung-Fu Tee",
+        "clothing_variation": "Light Blue",
+        "fav_styles": ["Active", "Cute"],
+        "fav_colors": ["Aqua", "Green"],
+        "hobby": "Nature",
+        "house_interior_url":
+            "https://dodo.ac/np/images/d/d5/House_of_Ace_NH.jpg",
+        "house_exterior_url":
+            "https://dodo.ac/np/images/e/ef/House_of_Ace_NH_Exterior.jpg",
+        "house_wallpaper": "Green-Paint Wall",
+        "house_flooring": "Green-Paint Flooring",
+        "house_music": "K.K. Hop",
+        "house_music_note": ""
+      },
+      "appearances": ["DNM", "AC", "E_PLUS", "NH", "PC"]
+    }
+  ];
+
   const villager = Villager(
     "Ace",
     "https://nookipedia.com/wiki/Ace",
@@ -66,6 +115,48 @@ void main() {
     "DNM",
     [],
     null,
+    ["DNM", "AC", "E_PLUS", "NH", "PC"],
+  );
+
+  const villagerWithNHDetails = Villager(
+    "Ace",
+    "https://nookipedia.com/wiki/Ace",
+    "",
+    "0961f6",
+    "fffce9",
+    "brd09",
+    "https://dodo.ac/np/images/9/91/Ace_amiibo.png",
+    Species.bird,
+    Personality.jock,
+    Gender.male,
+    "August",
+    "11",
+    Zodiac.leo,
+    "If you love something, let it go. Then chase it down. What were you thinking?",
+    "ace",
+    "Kung-Fu Tee",
+    false,
+    "DNM",
+    [],
+    NewHorizonDetails(
+      "https://dodo.ac/np/images/9/91/Ace_amiibo.png",
+      "https://dodo.ac/np/images/6/61/Ace%27s_Poster_NH_Texture.png",
+      "https://dodo.ac/np/images/4/4f/Ace_NH_Villager_Icon.png",
+      "If you love something, let it go. Then chase it down. What were you thinking?",
+      "A",
+      "ace",
+      "Kung-Fu Tee",
+      "Light Blue",
+      ["Active", "Cute"],
+      ["Aqua", "Green"],
+      Hobby.nature,
+      "https://dodo.ac/np/images/d/d5/House_of_Ace_NH.jpg",
+      "https://dodo.ac/np/images/e/ef/House_of_Ace_NH_Exterior.jpg",
+      "Green-Paint Wall",
+      "Green-Paint Flooring",
+      "K.K. Hop",
+      "",
+    ),
     ["DNM", "AC", "E_PLUS", "NH", "PC"],
   );
 
@@ -116,7 +207,7 @@ void main() {
       ).thenAnswer(
         (realInvocation) async => Response(
           statusCode: 200,
-          data: villagerJson,
+          data: villagerNHDetailsJson,
           requestOptions: RequestOptions(
             path: resourceUrl,
           ),
@@ -124,8 +215,9 @@ void main() {
       );
 
       var villagers = await villagerService.fetchDetails(nhDetails: true);
-      expect(villagers, [villager]);
-      expect(villagers[0].newHorizonDetails, villager.newHorizonDetails);
+      expect(villagers, [villagerWithNHDetails]);
+      expect(villagers[0].newHorizonDetails,
+          villagerWithNHDetails.newHorizonDetails);
 
       verify(
         dio.get(

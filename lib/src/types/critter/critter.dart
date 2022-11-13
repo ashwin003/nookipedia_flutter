@@ -75,7 +75,6 @@ class Critter extends Equatable {
         ? [
             json["catchphrase"] as String,
             json["catchphrase2"] as String,
-            json["catchphrase3"] as String,
           ]
         : List<String>.from(json["catchphrases"]);
     return Critter(

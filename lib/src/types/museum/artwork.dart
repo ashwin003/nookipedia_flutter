@@ -1,9 +1,10 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'artwork.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Artwork {
+class Artwork extends Equatable {
   /// Name of the artwork.
   final String name;
 
@@ -52,7 +53,7 @@ class Artwork {
   /// The length of the artwork.
   final double length;
 
-  Artwork(
+  const Artwork(
     this.name,
     this.url,
     this.imageUrl,
@@ -81,4 +82,24 @@ class Artwork {
 
   @override
   int get hashCode => url.hashCode;
+
+  @override
+  List<Object?> get props => [
+        name,
+        url,
+        imageUrl,
+        hasFake,
+        fakeImageUrl,
+        artName,
+        author,
+        year,
+        artStyle,
+        description,
+        buy,
+        sell,
+        availability,
+        authenticity,
+        width,
+        length,
+      ];
 }

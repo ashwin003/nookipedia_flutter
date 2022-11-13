@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../common/index.dart';
@@ -6,7 +7,7 @@ import 'material.dart';
 part 'recipe.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Recipe {
+class Recipe extends Equatable {
   /// Link to the respective Nookipedia article.
   final String url;
 
@@ -35,7 +36,7 @@ class Recipe {
   /// The majority of recipes cannot be bought (in which case this array will be empty).
   final List<Price> buy;
 
-  Recipe(
+  const Recipe(
     this.url,
     this.name,
     this.imageUrl,
@@ -52,8 +53,15 @@ class Recipe {
   Map<String, dynamic> toJson() => _$RecipeToJson(this);
 
   @override
-  bool operator ==(Object other) => other is Recipe && other.url == url;
-
-  @override
-  int get hashCode => url.hashCode;
+  List<Object?> get props => [
+        url,
+        name,
+        imageUrl,
+        serialId,
+        sell,
+        recipesToUnlock,
+        materials,
+        availability,
+        buy,
+      ];
 }

@@ -1,13 +1,14 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'variation.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class ToolVariation {
+class ToolVariation extends Equatable {
   final String variation;
   final String imageUrl;
 
-  ToolVariation(
+  const ToolVariation(
     this.variation,
     this.imageUrl,
   );
@@ -16,4 +17,10 @@ class ToolVariation {
       _$ToolVariationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ToolVariationToJson(this);
+
+  @override
+  List<Object?> get props => [
+        variation,
+        imageUrl,
+      ];
 }

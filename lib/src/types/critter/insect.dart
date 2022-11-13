@@ -6,7 +6,7 @@ class Insect extends Critter {
 
   /// Short descriptor of where the insect can be found.
   final String location;
-  Insect({
+  const Insect({
     required super.number,
     required super.name,
     required super.url,

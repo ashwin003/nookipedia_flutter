@@ -37,7 +37,7 @@ void main() {
     "buy": []
   };
 
-  final recipe = Recipe(
+  const recipe = Recipe(
       "https://nookipedia.com/wiki/Item:Acorn_Pochette_(New_Horizons)",
       "Acorn Pochette",
       "https://dodo.ac/np/images/d/de/Acorn_Pochette_NH_DIY_Icon.png",

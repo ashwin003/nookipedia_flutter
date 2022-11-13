@@ -1,14 +1,16 @@
+import 'package:equatable/equatable.dart';
+
 import '../../extensions/string_extensions.dart';
 
 import 'month.dart';
 
-class CritterMonthlyAvailability {
+class CritterMonthlyAvailability extends Equatable {
   final int monthNumber;
   final String monthName;
   final List<int> hours;
   final String hourString;
 
-  CritterMonthlyAvailability({
+  const CritterMonthlyAvailability({
     required this.monthNumber,
     required this.monthName,
     required this.hours,
@@ -25,20 +27,19 @@ class CritterMonthlyAvailability {
   }
 
   @override
-  bool operator ==(Object other) =>
-      other is CritterMonthlyAvailability &&
-      other.monthNumber == monthNumber &&
-      other.hours == hours;
-
-  @override
-  int get hashCode => monthNumber.hashCode + hours.hashCode;
+  List<Object?> get props => [
+        monthNumber,
+        monthName,
+        hours,
+        hourString,
+      ];
 }
 
-class CritterAvailability {
+class CritterAvailability extends Equatable {
   final bool availableAllYear;
   final List<CritterMonthlyAvailability> availability;
 
-  CritterAvailability({
+  const CritterAvailability({
     required this.availableAllYear,
     required this.availability,
   });
@@ -77,4 +78,10 @@ class CritterAvailability {
       availability: availabilityArray,
     );
   }
+
+  @override
+  List<Object?> get props => [
+        availableAllYear,
+        availability,
+      ];
 }

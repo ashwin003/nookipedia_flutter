@@ -45,7 +45,7 @@ void main() {
     }
   ];
 
-  final villager = Villager(
+  const villager = Villager(
     "Ace",
     "https://nookipedia.com/wiki/Ace",
     "",

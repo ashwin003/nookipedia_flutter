@@ -62,7 +62,7 @@ void main() {
     ]
   };
 
-  final clothing = Clothing(
+  const clothing = Clothing(
     "3D Glasses",
     "https://nookipedia.com/wiki/Item:3D_Glasses_(New_Horizons)",
     ClothingCategory.accessories,

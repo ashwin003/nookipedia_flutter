@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:nookipedia_flutter/src/types/critter/rarity.dart';
 
 import 'availability.dart';
 
-class Critter {
+class Critter extends Equatable {
   /// In-game critter number, marking position in the Critterpedia.
   final int number;
 
@@ -43,7 +44,7 @@ class Critter {
   /// When you can catch the critter in the Southern hemisphere.
   final CritterAvailability south;
 
-  Critter({
+  const Critter({
     required this.number,
     required this.name,
     required this.url,
@@ -96,8 +97,22 @@ class Critter {
   }
 
   @override
-  bool operator ==(Object other) => other is Critter && other.url == url;
+  List<Object?> get props => [
+        number,
+        name,
+        url,
+        imageUrl,
+        renderUrl,
+        catchphrases,
+        rarity,
+        totalCatch,
+        sellNook,
+        tankWidth,
+        tankLength,
+        north,
+        south,
+      ];
 
   @override
-  int get hashCode => url.hashCode;
+  bool get stringify => true;
 }

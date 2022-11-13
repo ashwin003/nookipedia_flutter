@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../common/index.dart';
@@ -5,7 +6,7 @@ import '../common/index.dart';
 part 'item.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Item {
+class Item extends Equatable {
   /// Link to the respective Nookipedia article.
   final String url;
 
@@ -54,7 +55,7 @@ class Item {
   /// An array of prices, for when the interior may be purchased with Bells, Nook Miles, etc..
   final List<Price> buy;
 
-  Item(
+  const Item(
     this.url,
     this.name,
     this.imageUrl,
@@ -81,8 +82,25 @@ class Item {
   Map<String, dynamic> toJson() => _$ItemToJson(this);
 
   @override
-  bool operator ==(Object other) => other is Item && other.url == url;
-
-  @override
-  int get hashCode => url.hashCode;
+  List<Object?> get props => [
+        url,
+        name,
+        imageUrl,
+        stack,
+        happyHomeAcademyBase,
+        sell,
+        isFence,
+        materialType,
+        materialSeasonality,
+        materialSort,
+        materialNameSort,
+        materialSeasonalitySort,
+        isEdible,
+        plantType,
+        versionAdded,
+        unlocked,
+        notes,
+        availability,
+        buy,
+      ];
 }

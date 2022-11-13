@@ -73,7 +73,7 @@ void main() {
       "Last day of winter (Northern Hemisphere)",
       DateTime.parse("2022-02-24"),
       EventType.season,
-      "https://nookipedia.com/wiki/New_Year's_Day",
+      "https://nookipedia.com/wiki/Winter",
     )
   ];
 

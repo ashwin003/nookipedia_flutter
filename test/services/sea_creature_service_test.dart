@@ -91,35 +91,53 @@ void main() {
     return CritterMonthlyAvailability(
         monthNumber: month,
         monthName: Month.values[month - 1].name.toCapitalized(),
-        hours: [16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8],
-        hourString: "4 AM – 9 PM");
+        hours: const [
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        hourString: "4 PM – 9 AM");
   }
 
   final north = CritterAvailability(
         availableAllYear: false,
-        availability: [4, 5, 6, 7, 8, 9]
+        availability: [1, 6, 7, 8, 9, 10, 11, 12]
             .map((index) => getCritterMonthlyAvailability(index))
             .toList(),
       ),
       south = CritterAvailability(
-        availableAllYear: true,
-        availability: [1, 2, 3, 10, 11, 12]
+        availableAllYear: false,
+        availability: [1, 2, 3, 4, 5, 6, 7, 12]
             .map((index) => getCritterMonthlyAvailability(index))
             .toList(),
       );
 
   final seaCreature = SeaCreature(
-    number: 10,
+    number: 17,
     name: "Abalone",
     url: "https://nookipedia.com/wiki/Abalone",
     imageUrl: "https://dodo.ac/np/images/0/04/Abalone_NH_Icon.png",
     renderUrl: "https://dodo.ac/np/images/f/fd/Abalone_NH.png",
-    catchphrases: [
+    catchphrases: const [
       "I got an abalone! Why do I want a sandwich now?",
     ],
     rarity: Rarity.unspecified,
     totalCatch: 20,
-    sellNook: 3000,
+    sellNook: 2000,
     tankWidth: 1.0,
     tankLength: 1.0,
     north: north,

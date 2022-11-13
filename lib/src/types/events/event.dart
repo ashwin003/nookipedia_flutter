@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'hemisphere.dart';
 
@@ -6,7 +7,7 @@ import 'event_type.dart';
 part 'event.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class AnimalCrossingEvent {
+class AnimalCrossingEvent extends Equatable {
   /// The description of the event.
   final String event;
 
@@ -38,7 +39,7 @@ class AnimalCrossingEvent {
     }
   }
 
-  AnimalCrossingEvent(
+  const AnimalCrossingEvent(
     this.event,
     this.date,
     this.type,
@@ -56,11 +57,10 @@ class AnimalCrossingEvent {
       obj.toString().replaceFirst(_regex, '').trim();
 
   @override
-  bool operator ==(Object other) =>
-      other is AnimalCrossingEvent &&
-      other.event == event &&
-      other.date == date;
-
-  @override
-  int get hashCode => event.hashCode + date.hashCode;
+  List<Object?> get props => [
+        event,
+        date,
+        type,
+        url,
+      ];
 }

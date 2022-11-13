@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'gender.dart';
@@ -9,7 +10,7 @@ import 'zodiac.dart';
 part 'villager.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Villager {
+class Villager extends Equatable {
   /// Name of the villager.
   final String name;
 
@@ -116,7 +117,7 @@ class Villager {
   /// `PC` is Pocket Camp for mobile.
   final List<String> appearances;
 
-  Villager(
+  const Villager(
     this.name,
     this.url,
     this.altName,
@@ -150,10 +151,35 @@ class Villager {
 
   @override
   int get hashCode => id.hashCode;
+
+  @override
+  List<Object?> get props => [
+        name,
+        url,
+        altName,
+        titleColor,
+        textColor,
+        id,
+        imageUrl,
+        species,
+        personality,
+        gender,
+        birthdayMonth,
+        birthdayDay,
+        sign,
+        quote,
+        phrase,
+        clothing,
+        islander,
+        debut,
+        prevPhrases,
+        newHorizonDetails,
+        appearances,
+      ];
 }
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class NewHorizonDetails {
+class NewHorizonDetails extends Equatable {
   final String imageUrl;
   final String photoUrl;
   final String iconUrl;
@@ -176,7 +202,7 @@ class NewHorizonDetails {
   final String houseMusic;
   final String houseMusicNote;
 
-  NewHorizonDetails(
+  const NewHorizonDetails(
     this.imageUrl,
     this.photoUrl,
     this.iconUrl,
@@ -200,4 +226,25 @@ class NewHorizonDetails {
       _$NewHorizonDetailsFromJson(json);
 
   Map<String, dynamic> toJson() => _$NewHorizonDetailsToJson(this);
+
+  @override
+  List<Object?> get props => [
+        imageUrl,
+        photoUrl,
+        iconUrl,
+        quote,
+        subPersonality,
+        catchPhrase,
+        clothing,
+        clothingVariation,
+        favoriteStyles,
+        favoriteColors,
+        hobby,
+        houseInteriorUrl,
+        houseExteriorUrl,
+        houseWallpaper,
+        houseFlooring,
+        houseMusic,
+        houseMusicNote,
+      ];
 }

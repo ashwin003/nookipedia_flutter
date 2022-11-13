@@ -91,9 +91,27 @@ void main() {
 
   CritterMonthlyAvailability getCritterMonthlyAvailability(int month) {
     return CritterMonthlyAvailability(
-        monthNumber: month,
-        monthName: Month.values[month - 1].name.toCapitalized(),
-        hours: [16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8],
+        monthNumber: month + 1,
+        monthName: Month.values[month].name.toCapitalized(),
+        hours: const [
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20
+        ],
         hourString: "4 AM – 9 PM");
   }
 
@@ -114,7 +132,7 @@ void main() {
     url: "https://nookipedia.com/wiki/Anchovy_(fish)",
     imageUrl: "https://dodo.ac/np/images/7/7f/Anchovy_%28Fish%29_NH_Icon.png",
     renderUrl: "https://dodo.ac/np/images/1/19/Anchovy_%28Fish%29_NH.png",
-    catchphrases: ["I caught an anchovy! Stay away from my pizza!"],
+    catchphrases: const ["I caught an anchovy! Stay away from my pizza!"],
     location: "Sea",
     rarity: Rarity.unspecified,
     totalCatch: 0,

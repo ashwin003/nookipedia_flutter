@@ -45,7 +45,7 @@ void main() {
     "length": 1.0
   };
 
-  final artwork = Artwork(
+  const artwork = Artwork(
     "Academic Painting",
     "https://nookipedia.com/wiki/Academic_Painting",
     "https://dodo.ac/np/images/e/e8/Academic_Painting_NH_Icon.png",

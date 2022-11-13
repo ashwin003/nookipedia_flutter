@@ -90,7 +90,7 @@ void main() {
     ]
   };
 
-  final photo = Photo(
+  const photo = Photo(
     "https://nookipedia.com/wiki/Item:Ace's_Photo_(New_Horizons)",
     "Ace's Photo",
     PhotoCategory.photo,
@@ -134,7 +134,7 @@ void main() {
       ),
       PhotoVariation(
         "Pop",
-        "https://dodo.ac/np/images/2/2b/Ace%27s_Photo_%28White%29_NH_Icon.png",
+        "https://dodo.ac/np/images/9/99/Ace%27s_Photo_%28Pop%29_NH_Icon.png",
         ["Blue", "Yellow"],
       ),
       PhotoVariation(
@@ -225,7 +225,7 @@ void main() {
     });
   });
 
-  group('Fetch single tool', () {
+  group('Fetch single photo', () {
     test('without filter criteria', () async {
       when(
         dio.get(

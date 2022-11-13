@@ -1,14 +1,15 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'variation.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class ClothingVariation {
+class ClothingVariation extends Equatable {
   final String variation;
   final String imageUrl;
   final List<String> colors;
 
-  ClothingVariation(
+  const ClothingVariation(
     this.variation,
     this.imageUrl,
     this.colors,
@@ -18,4 +19,11 @@ class ClothingVariation {
       _$ClothingVariationFromJson(json);
 
   Map<String, dynamic> toJson() => _$ClothingVariationToJson(this);
+
+  @override
+  List<Object?> get props => [
+        variation,
+        imageUrl,
+        colors,
+      ];
 }

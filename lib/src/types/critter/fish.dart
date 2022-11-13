@@ -6,7 +6,7 @@ class Fish extends Critter {
 
   /// Short descriptor of where the fish can be found.
   final String location;
-  Fish({
+  const Fish({
     required super.number,
     required super.name,
     required super.url,
@@ -27,7 +27,7 @@ class Fish extends Critter {
   factory Fish.fromJson(Map<String, dynamic> json, String version) {
     final critter = Critter.fromJson(json, version);
     final location = json["location"] as String;
-    final sellCJ = int.parse(json["sell_cj"] as String);
+    final sellCJ = int.parse(json["sell_cj"].toString());
 
     return Fish(
       number: critter.number,

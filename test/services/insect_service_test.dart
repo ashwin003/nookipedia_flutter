@@ -95,10 +95,21 @@ void main() {
 
   CritterMonthlyAvailability getCritterMonthlyAvailability(int month) {
     return CritterMonthlyAvailability(
-        monthNumber: month,
-        monthName: Month.values[month - 1].name.toCapitalized(),
-        hours: [16, 17, 18, 19, 20, 21, 22, 23, 0, 1, 2, 3, 4, 5, 6, 7, 8],
-        hourString: "4 AM – 9 PM");
+      monthNumber: month,
+      monthName: Month.values[month - 1].name.toCapitalized(),
+      hours: const [
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+      ],
+      hourString: "8 AM – 5 PM",
+    );
   }
 
   final north = CritterAvailability(
@@ -108,7 +119,7 @@ void main() {
             .toList(),
       ),
       south = CritterAvailability(
-        availableAllYear: true,
+        availableAllYear: false,
         availability: [1, 2, 3, 10, 11, 12]
             .map((index) => getCritterMonthlyAvailability(index))
             .toList(),
@@ -120,7 +131,7 @@ void main() {
     url: "https://nookipedia.com/wiki/Agrias_Butterfly",
     imageUrl: "https://dodo.ac/np/images/6/60/Agrias_Butterfly_NH_Icon.png",
     renderUrl: "https://dodo.ac/np/images/d/db/Agrias_Butterfly_NH.png",
-    catchphrases: [
+    catchphrases: const [
       "I caught an agrias butterfly! I wonder if it finds me disagrias-able?",
     ],
     location: "Flying near flowers",

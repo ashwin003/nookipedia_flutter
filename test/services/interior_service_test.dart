@@ -47,7 +47,7 @@ void main() {
     ]
   };
 
-  final interior = Interior(
+  const interior = Interior(
     "https://nookipedia.com/wiki/Item:Abstract_Wall_(New_Horizons)",
     "Abstract Wall",
     "https://dodo.ac/np/images/2/2d/Abstract_Wall_NH_Icon.png",

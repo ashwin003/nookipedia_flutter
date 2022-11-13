@@ -45,7 +45,7 @@ void main() {
     "buy": []
   };
 
-  final item = Item(
+  const item = Item(
       "https://nookipedia.com/wiki/Item:Acorn_(New_Horizons)",
       "Acorn",
       "https://dodo.ac/np/images/9/9f/Acorn_NH_Icon.png",
@@ -64,11 +64,11 @@ void main() {
       true,
       "", [
     Availability(
-      "Nook's Cranny",
-      "",
+      "Tree",
+      "Shaking",
     ),
     Availability(
-      "Crafting",
+      "Cornimer",
       "",
     ),
   ], []);

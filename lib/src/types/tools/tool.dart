@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../common/index.dart';
@@ -6,7 +7,7 @@ import 'variation.dart';
 part 'tool.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Tool {
+class Tool extends Equatable {
   /// Link to the respective Nookipedia article.
   final String url;
 
@@ -56,7 +57,7 @@ class Tool {
   /// Tools with multiple variations will have the variation fields defined with the name of each variation.
   final List<ToolVariation> variations;
 
-  Tool(
+  const Tool(
     this.url,
     this.name,
     this.uses,
@@ -80,8 +81,20 @@ class Tool {
   static int _stringToInt(Object obj) => int.parse(obj.toString());
 
   @override
-  bool operator ==(Object other) => other is Tool && other.url == url;
-
-  @override
-  int get hashCode => url.hashCode;
+  List<Object?> get props => [
+        url,
+        name,
+        uses,
+        happyHomeAcademyBase,
+        sell,
+        isCustomizable,
+        customKits,
+        customBodyPart,
+        versionAdded,
+        unlocked,
+        notes,
+        availability,
+        buy,
+        variations,
+      ];
 }

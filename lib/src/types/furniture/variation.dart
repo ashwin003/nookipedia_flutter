@@ -1,15 +1,16 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'variation.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class FurnitureVariation {
+class FurnitureVariation extends Equatable {
   final String variation;
   final String pattern;
   final String imageUrl;
   final List<String> colors;
 
-  FurnitureVariation(
+  const FurnitureVariation(
     this.variation,
     this.pattern,
     this.imageUrl,
@@ -20,4 +21,12 @@ class FurnitureVariation {
       _$FurnitureVariationFromJson(json);
 
   Map<String, dynamic> toJson() => _$FurnitureVariationToJson(this);
+
+  @override
+  List<Object?> get props => [
+        variation,
+        pattern,
+        imageUrl,
+        colors,
+      ];
 }

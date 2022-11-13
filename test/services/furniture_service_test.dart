@@ -73,7 +73,7 @@ void main() {
     ]
   };
 
-  final furniture = Furniture(
+  const furniture = Furniture(
     "https://nookipedia.com/wiki/Item:1-Up_Mushroom_(New_Horizons)",
     "1-Up Mushroom",
     FurnitureCategory.miscellaneous,

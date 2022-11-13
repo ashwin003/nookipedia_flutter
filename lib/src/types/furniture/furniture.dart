@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../common/index.dart';
 import 'furniture_function.dart';
@@ -6,7 +7,7 @@ import 'variation.dart';
 part 'furniture.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Furniture {
+class Furniture extends Equatable {
   /// Link to the respective Nookipedia article.
   final String url;
 
@@ -116,7 +117,7 @@ class Furniture {
   /// body variety, pattern, or both.
   final List<FurnitureVariation> variations;
 
-  Furniture(
+  const Furniture(
     this.url,
     this.name,
     this.category,
@@ -157,10 +158,38 @@ class Furniture {
   static double _stringToDouble(Object obj) => double.parse(obj.toString());
 
   @override
-  bool operator ==(Object other) => other is Furniture && other.url == url;
-
-  @override
-  int get hashCode => url.hashCode;
+  List<Object?> get props => [
+        url,
+        name,
+        category,
+        itemSeries,
+        itemSet,
+        happyHomeAcademyCategory,
+        tag,
+        happyHomeAcademyBase,
+        lucky,
+        luckySeason,
+        sell,
+        variationTotal,
+        patternTotal,
+        isCustomizable,
+        customKits,
+        customKitType,
+        customBodyPart,
+        customPatternPart,
+        height,
+        doorDecor,
+        versionAdded,
+        unlocked,
+        notes,
+        gridWidth,
+        gridLength,
+        themes,
+        functions,
+        availability,
+        buy,
+        variations,
+      ];
 }
 
 @JsonEnum()

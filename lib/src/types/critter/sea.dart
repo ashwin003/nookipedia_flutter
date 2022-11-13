@@ -1,7 +1,7 @@
 import 'critter.dart';
 
 class SeaCreature extends Critter {
-  SeaCreature({
+  const SeaCreature({
     required super.number,
     required super.name,
     required super.url,

@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../common/index.dart';
@@ -7,7 +8,7 @@ import 'variation.dart';
 part 'photo.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Photo {
+class Photo extends Equatable {
   /// Link to the respective Nookipedia article.
   final String url;
 
@@ -61,7 +62,7 @@ class Photo {
   /// Items with multiple variations will have the variation fields defined with the name of each variation.
   final List<PhotoVariation> variations;
 
-  Photo(
+  const Photo(
     this.url,
     this.name,
     this.category,
@@ -85,8 +86,22 @@ class Photo {
   Map<String, dynamic> toJson() => _$PhotoToJson(this);
 
   @override
-  bool operator ==(Object other) => other is Photo && other.url == url;
-
-  @override
-  int get hashCode => url.hashCode;
+  List<Object?> get props => [
+        url,
+        name,
+        category,
+        happyHomeAcademyBase,
+        sell,
+        isCustomizable,
+        customKits,
+        customBodyPart,
+        isInteractive,
+        versionAdded,
+        unlocked,
+        gridWidth,
+        gridLength,
+        availability,
+        buy,
+        variations,
+      ];
 }

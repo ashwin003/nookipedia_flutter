@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../common/index.dart';
@@ -6,7 +7,7 @@ import 'variation.dart';
 part 'clothing.g.dart';
 
 @JsonSerializable(fieldRename: FieldRename.snake)
-class Clothing {
+class Clothing extends Equatable {
   /// The name of the clothing.
   final String name;
 
@@ -56,7 +57,7 @@ class Clothing {
   /// Clothing with multiple variations will have the variation fields defined with the name of each variation.
   final List<ClothingVariation> variations;
 
-  Clothing(
+  const Clothing(
     this.name,
     this.url,
     this.category,
@@ -84,6 +85,25 @@ class Clothing {
 
   @override
   int get hashCode => url.hashCode;
+
+  @override
+  List<Object?> get props => [
+        name,
+        url,
+        category,
+        sell,
+        variationTotal,
+        canVillagersEquip,
+        seasonality,
+        versionAdded,
+        unlocked,
+        notes,
+        labelThemes,
+        styles,
+        availability,
+        buy,
+        variations,
+      ];
 }
 
 @JsonEnum()

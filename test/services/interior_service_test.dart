@@ -88,7 +88,7 @@ void main() {
     );
   });
 
-  group('Fetching Interior data with details', () {
+  group('Fetching Interior item data with details', () {
     test('without filter criteria', () async {
       when(
         dio.get(
@@ -167,7 +167,7 @@ void main() {
     });
   });
 
-  group('Fetching Interior data without details', () {
+  group('Fetching Interior item names', () {
     test('without filter criteria', () async {
       when(
         dio.get(
@@ -245,7 +245,7 @@ void main() {
   });
 
   group('Fetch single furniture', () {
-    test('without filter criteria', () async {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -278,7 +278,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with a specific thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',

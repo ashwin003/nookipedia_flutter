@@ -85,7 +85,7 @@ void main() {
     );
   });
 
-  group('Should fetch the events as expected', () {
+  group('Should fetch the Events as expected', () {
     test('without filter criteria', () async {
       when(dio.get(resourceUrl,
               queryParameters: {}, options: anyNamed('options')))
@@ -134,7 +134,7 @@ void main() {
           .called(1);
     });
 
-    test('Should throw the expected exception when the network call fails',
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(

@@ -195,8 +195,8 @@ void main() {
     });
   });
 
-  group('Fetching Photo data without details', () {
-    test('without filter criteria', () async {
+  group('Fetching Photo names', () {
+    test('shouldd return results as expected', () async {
       when(
         dio.get(
           resourceUrl,
@@ -226,7 +226,7 @@ void main() {
   });
 
   group('Fetch single photo', () {
-    test('without filter criteria', () async {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -257,7 +257,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with a specific thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',

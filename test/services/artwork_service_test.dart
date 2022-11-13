@@ -133,7 +133,7 @@ void main() {
       ).called(1);
     });
 
-    test('Should throw the expected exception when the network call fails',
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(
@@ -168,7 +168,7 @@ void main() {
     });
   });
 
-  group('Fetching Artwork data without details', () {
+  group('Fetching Artwork names', () {
     test('without filter criteria', () async {
       when(
         dio.get(
@@ -224,10 +224,44 @@ void main() {
         ),
       ).called(1);
     });
+
+    test('should throw the expected exception when the network call fails',
+        () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"hasfake": false, "excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 400,
+          data: errorJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+        () async => await artworkService.fetchNames(hasFake: false),
+        throwsA(
+          isA<NookipediaException>(),
+        ),
+      );
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"hasfake": false, "excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
   });
 
   group('Fetch single artwork', () {
-    test('without filter criteria', () async {
+    test('should return expected result', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -255,40 +289,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
-      when(
-        dio.get(
-          '$resourceUrl/$encodedName',
-          queryParameters: {"thumbsize": 100},
-          options: anyNamed('options'),
-        ),
-      ).thenAnswer(
-        (realInvocation) async => Response(
-          statusCode: 200,
-          data: artworkJson,
-          requestOptions: RequestOptions(
-            path: '$resourceUrl/$encodedName',
-          ),
-        ),
-      );
-
-      expect(
-          await artworkService.get(
-            name: name,
-            thumbSize: 100,
-          ),
-          artwork);
-
-      verify(
-        dio.get(
-          '$resourceUrl/$encodedName',
-          queryParameters: {"thumbsize": 100},
-          options: anyNamed('options'),
-        ),
-      ).called(1);
-    });
-
-    test('Should throw the expected exception when the network call fails',
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(

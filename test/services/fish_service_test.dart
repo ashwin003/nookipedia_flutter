@@ -221,7 +221,7 @@ void main() {
       ).called(1);
     });
 
-    test('Should throw the expected exception when the network call fails',
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(
@@ -331,7 +331,7 @@ void main() {
   });
 
   group('Fetch single Fish', () {
-    test('without filter criteria', () async {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -357,6 +357,40 @@ void main() {
         dio.get(
           '$resourceUrl/$encodedName',
           queryParameters: {},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('with a specific thumb size', () async {
+      when(
+        dio.get(
+          '$resourceUrl/$encodedName',
+          queryParameters: {"thumbsize": 100},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: fishJson,
+          requestOptions: RequestOptions(
+            path: '$resourceUrl/$encodedName',
+          ),
+        ),
+      );
+
+      expect(
+        await fishService.get(
+          name: name,
+          thumbSize: 100,
+        ),
+        fish,
+      );
+
+      verify(
+        dio.get(
+          '$resourceUrl/$encodedName',
+          queryParameters: {"thumbsize": 100},
           options: anyNamed('options'),
         ),
       ).called(1);

@@ -78,7 +78,7 @@ void main() {
   });
 
   group('Fetching Villager data with details', (() {
-    test('without filter criteria', () async {
+    test('without NH Details', () async {
       when(
         dio.get(
           resourceUrl,
@@ -123,7 +123,9 @@ void main() {
         ),
       );
 
-      expect(await villagerService.fetchDetails(nhDetails: true), [villager]);
+      var villagers = await villagerService.fetchDetails(nhDetails: true);
+      expect(villagers, [villager]);
+      expect(villagers[0].newHorizonDetails, villager.newHorizonDetails);
 
       verify(
         dio.get(
@@ -133,10 +135,39 @@ void main() {
         ),
       ).called(1);
     });
+
+    test('for a specific species', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"species": "ostrich"},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: villagerJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(await villagerService.fetchDetails(species: Species.ostrich),
+          [villager]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"species": "ostrich"},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
   }));
 
-  group('Fetchinng Villager data without details', () {
-    test('should return list of string', () async {
+  group('Fetchinng Villager names', () {
+    test('without filter criteria', () async {
       when(
         dio.get(
           resourceUrl,
@@ -159,6 +190,44 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {"excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('with filter criteria - species', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "species": "ostrich",
+            "excludedetails": true,
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [name],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await villagerService.fetchNames(
+            species: Species.ostrich,
+          ),
+          [name]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "species": "ostrich",
+            "excludedetails": true,
+          },
           options: anyNamed('options'),
         ),
       ).called(1);

@@ -331,7 +331,7 @@ void main() {
   });
 
   group('Fetch single Sea Creature', () {
-    test('without filter criteria', () async {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -357,6 +357,37 @@ void main() {
         dio.get(
           '$resourceUrl/$encodedName',
           queryParameters: {},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('with a specific thumb size', () async {
+      when(
+        dio.get(
+          '$resourceUrl/$encodedName',
+          queryParameters: {"thumbsize": 100},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: seaCreatureJson,
+          requestOptions: RequestOptions(
+            path: '$resourceUrl/$encodedName',
+          ),
+        ),
+      );
+
+      expect(
+        await seaCreatureService.get(name: name, thumbSize: 100),
+        seaCreature,
+      );
+
+      verify(
+        dio.get(
+          '$resourceUrl/$encodedName',
+          queryParameters: {"thumbsize": 100},
           options: anyNamed('options'),
         ),
       ).called(1);

@@ -119,7 +119,167 @@ void main() {
     );
   });
 
-  group('Fetching Clothing data without details', () {
+  group('Fetch Clothing details', () {
+    test('without filter criteria', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [clothingJson],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(await clothingService.fetchDetails(), [clothing]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('with filter criteria - colors', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "color": [
+              "Aqua",
+              "Beige",
+            ],
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [clothingJson],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await clothingService.fetchDetails(
+            colors: [
+              "Aqua",
+              "Beige",
+            ],
+          ),
+          [clothing]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "color": [
+              "Aqua",
+              "Beige",
+            ],
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('with filter criteria - category', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "category": "Dress-up",
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [clothingJson],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await clothingService.fetchDetails(
+            category: ClothingCategory.dressUp,
+          ),
+          [clothing]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "category": "Dress-up",
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('should throw the expected exception when the network call fails',
+        () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "color": [
+              "Aqua",
+              "Beige",
+            ],
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 400,
+          data: errorJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+        () async => await clothingService.fetchDetails(
+          colors: [
+            "Aqua",
+            "Beige",
+          ],
+        ),
+        throwsA(
+          isA<NookipediaException>(),
+        ),
+      );
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "color": [
+              "Aqua",
+              "Beige",
+            ],
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+  });
+
+  group('Fetching Clothing names', () {
     test('without filter criteria', () async {
       when(
         dio.get(
@@ -148,7 +308,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with filter criteria - colors', () async {
       when(
         dio.get(
           resourceUrl,
@@ -195,7 +355,45 @@ void main() {
       ).called(1);
     });
 
-    test('Should throw the expected exception when the network call fails',
+    test('with filter criteria - category', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "category": "Dress-up",
+            "excludedetails": true,
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [name],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await clothingService.fetchNames(
+            category: ClothingCategory.dressUp,
+          ),
+          [name]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "category": "Dress-up",
+            "excludedetails": true,
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(
@@ -247,8 +445,8 @@ void main() {
     });
   });
 
-  group('Fetch single furniture', () {
-    test('without filter criteria', () async {
+  group('Fetch single Clothing item', () {
+    test('should return expected result', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -279,41 +477,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
-      when(
-        dio.get(
-          '$resourceUrl/$encodedName',
-          queryParameters: {"thumbsize": 100},
-          options: anyNamed('options'),
-        ),
-      ).thenAnswer(
-        (realInvocation) async => Response(
-          statusCode: 200,
-          data: clothingJson,
-          requestOptions: RequestOptions(
-            path: '$resourceUrl/$encodedName',
-          ),
-        ),
-      );
-
-      expect(
-        await clothingService.get(
-          name: name,
-          thumbSize: 100,
-        ),
-        clothing,
-      );
-
-      verify(
-        dio.get(
-          '$resourceUrl/$encodedName',
-          queryParameters: {"thumbsize": 100},
-          options: anyNamed('options'),
-        ),
-      ).called(1);
-    });
-
-    test('Should throw the expected exception when the network call fails',
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(

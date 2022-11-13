@@ -89,7 +89,7 @@ void main() {
   });
 
   group('Fetching Tool data with details', () {
-    test('without filter criteria', () async {
+    test('should return results as expected', () async {
       when(
         dio.get(
           resourceUrl,
@@ -121,7 +121,7 @@ void main() {
   });
 
   group('Fetching Tool data without details', () {
-    test('without filter criteria', () async {
+    test('should return results as expected', () async {
       when(
         dio.get(
           resourceUrl,
@@ -151,7 +151,7 @@ void main() {
   });
 
   group('Fetch single tool', () {
-    test('without filter criteria', () async {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -184,7 +184,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with a specific thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',

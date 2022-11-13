@@ -160,7 +160,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with filter criteria - colors', () async {
       when(
         dio.get(
           resourceUrl,
@@ -207,7 +207,45 @@ void main() {
       ).called(1);
     });
 
-    test('Should throw the expected exception when the network call fails',
+    test('with filter criteria - category', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "category": "Wall-mounted",
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [
+            furnitureJson,
+          ],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await furnitureService.fetchDetails(
+            category: FurnitureCategory.wallMounted,
+          ),
+          [furniture]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "category": "Wall-mounted",
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(
@@ -257,7 +295,7 @@ void main() {
     });
   });
 
-  group('Fetching Furniture data without details', () {
+  group('Fetching Furniture names', () {
     test('without filter criteria', () async {
       when(
         dio.get(
@@ -286,7 +324,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with filter criteria - colors', () async {
       when(
         dio.get(
           resourceUrl,
@@ -332,10 +370,41 @@ void main() {
         ),
       ).called(1);
     });
+
+    test('with filter criteria - category', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"category": "Wall-mounted", "excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: [name],
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await furnitureService.fetchNames(
+              category: FurnitureCategory.wallMounted),
+          [name]);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"category": "Wall-mounted", "excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
   });
 
-  group('Fetch single furniture', () {
-    test('without filter criteria', () async {
+  group('Fetch single Furniture', () {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -366,7 +435,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with a specific thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',

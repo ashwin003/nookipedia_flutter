@@ -126,7 +126,7 @@ void main() {
   });
 
   group('Fetch single recipe', () {
-    test('without filter criteria', () async {
+    test('without specifying a thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -159,7 +159,7 @@ void main() {
       ).called(1);
     });
 
-    test('with filter criteria', () async {
+    test('with a specific thumb size', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',

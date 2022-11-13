@@ -20,10 +20,17 @@ Pending wrappers:
 
 
 # 0.1.1
+
 Updated events API to simplify filtering events for a specific hemisphere
 
 # 0.2.1
+
 Added wrapper methods for critter endpoints (fish, insects, sea creatures)
 
 # 0.2.2
+
 Improves quality of tests
+
+# 0.2.3
+
+Improves quality of tests and increases code coverage

@@ -147,12 +147,6 @@ class Villager extends Equatable {
   Map<String, dynamic> toJson() => _$VillagerToJson(this);
 
   @override
-  bool operator ==(Object other) => other is Villager && other.id == id;
-
-  @override
-  int get hashCode => id.hashCode;
-
-  @override
   List<Object?> get props => [
         name,
         url,

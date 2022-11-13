@@ -78,12 +78,6 @@ class Artwork extends Equatable {
   Map<String, dynamic> toJson() => _$ArtworkToJson(this);
 
   @override
-  bool operator ==(Object other) => other is Artwork && other.url == url;
-
-  @override
-  int get hashCode => url.hashCode;
-
-  @override
   List<Object?> get props => [
         name,
         url,

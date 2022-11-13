@@ -222,7 +222,7 @@ void main() {
       ).called(1);
     });
 
-    test('Should throw the expected exception when the network call fails',
+    test('should throw the expected exception when the network call fails',
         () async {
       when(
         dio.get(
@@ -329,10 +329,52 @@ void main() {
         ),
       ).called(1);
     });
+
+    test('should throw the expected exception when the network call fails',
+        () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "month": "january",
+            "excludedetails": true,
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 400,
+          data: errorJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+        () async => await insectService.fetchNames(
+          month: "january",
+        ),
+        throwsA(
+          isA<NookipediaException>(),
+        ),
+      );
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "month": "january",
+            "excludedetails": true,
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
   });
 
   group('Fetch single Insect', () {
-    test('without filter criteria', () async {
+    test('should return expected result', () async {
       when(
         dio.get(
           '$resourceUrl/$encodedName',
@@ -352,6 +394,40 @@ void main() {
       expect(
         await insectService.get(name: name),
         insect,
+      );
+
+      verify(
+        dio.get(
+          '$resourceUrl/$encodedName',
+          queryParameters: {},
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('should throw the expected exception when the network call fails',
+        () async {
+      when(
+        dio.get(
+          '$resourceUrl/$encodedName',
+          queryParameters: {},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 400,
+          data: errorJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+        () async => await insectService.get(name: name),
+        throwsA(
+          isA<NookipediaException>(),
+        ),
       );
 
       verify(

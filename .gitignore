@@ -32,3 +32,6 @@ build/
 # Generated Dart files  
 **/*.g.dart
 **/*.mocks.dart
+
+# Code coverage
+coverage/

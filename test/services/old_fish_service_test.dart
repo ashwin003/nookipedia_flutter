@@ -168,6 +168,7 @@ void main() {
     north: north,
     south: south,
     sellCJ: 300,
+    shadowSize: "Small",
   );
 
   setUpAll(() {

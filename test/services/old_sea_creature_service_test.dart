@@ -141,6 +141,8 @@ void main() {
     tankLength: 1.0,
     north: north,
     south: south,
+    shadowSize: "Medium",
+    shadowMovement: "Medium",
   );
 
   setUpAll(() {

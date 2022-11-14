@@ -81,6 +81,9 @@ class NookipediaClient {
   /// Provides services related to the `insects` in the Animal Crossing series.
   late InsectService insects;
 
+  /// Provides services related to the `fossils` in the Animal Crossing series.
+  late FossilService fossils;
+
   void _init(String apiKey, String version) {
     final dio = Dio(
       BaseOptions(
@@ -133,6 +136,11 @@ class NookipediaClient {
       dio: dio,
     );
     insects = InsectServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
+    fossils = FossilServiceImpl(
       apiKey: apiKey,
       version: version,
       dio: dio,

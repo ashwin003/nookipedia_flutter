@@ -15,7 +15,22 @@ Dart wrapper for [Nookipedia API](https://api.nookipedia.com/). It  provides sim
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+Contains wrapper methods for the following endpoints:
+1. Artwork
+2. Clothing
+3. Events
+4. Furniture
+5. Interiors
+6. Miscellaneous items available in the game
+7. Photos and Posters
+8. Recipes
+9. Tools
+10. Villagers
+10. Villagers
+11. Insects
+12. Fish
+13. Sea Creatures
+14. Fossils
 
 ## Getting started
 

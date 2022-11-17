@@ -1,7 +1,9 @@
 name: nookipedia_flutter
 description: Flutter wrapper for Nookipedia API.
 version: 0.2.4
-homepage:
+homepage: https://github.com/ashwin003/nookipedia_flutter
+repository: https://github.com/ashwin003/nookipedia_flutter
+issue_tracker: https://github.com/ashwin003/nookipedia_flutter/issues
 
 environment:
   sdk: '>=2.18.4 <3.0.0'

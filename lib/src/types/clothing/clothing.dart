@@ -102,11 +102,13 @@ class Clothing extends Equatable {
 
 @JsonEnum()
 enum ClothingCategory {
+  @JsonValue("Other")
+  other,
   @JsonValue("Tops")
   tops,
   @JsonValue("Bottoms")
   bottoms,
-  @JsonValue("Dress-up")
+  @JsonValue("Dress-Up")
   dressUp,
   @JsonValue("Headwear")
   headwear,

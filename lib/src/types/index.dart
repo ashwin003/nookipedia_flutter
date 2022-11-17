@@ -10,3 +10,4 @@ export 'photos/index.dart';
 export 'recipes/index.dart';
 export 'tools/index.dart';
 export 'villagers/index.dart';
+export 'items/index.dart';

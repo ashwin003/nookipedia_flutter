@@ -50,7 +50,7 @@ void main() {
   const tool = Tool(
     "https://nookipedia.com/wiki/Item:Axe_(New_Horizons)",
     "Axe",
-    100,
+    "100",
     0,
     625,
     false,

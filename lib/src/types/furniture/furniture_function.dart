@@ -23,5 +23,15 @@ enum FurnitureFunction {
   @JsonValue("Bed")
   bed,
   @JsonValue("Audio")
-  audio
+  audio,
+  @JsonValue("Mirror")
+  mirror,
+  @JsonValue("Wardrobe")
+  wardrobe,
+  @JsonValue("Kitchenware")
+  kitchenware,
+  @JsonValue("DIY")
+  diy,
+  @JsonValue("TV")
+  tv,
 }

@@ -1,5 +1,4 @@
 import '../types/villagers/personality.dart';
-import '../types/villagers/species.dart';
 import '../types/villagers/villager.dart';
 
 /// This service retrieves villager information from the entire *Animal Crossing* series, with the option to filter by species, personality, and/or birthday.

@@ -34,9 +34,11 @@ class InteriorServiceImpl extends ApiService implements InteriorService {
   @override
   Future<Interior> get({
     required String name,
+    List<String>? colors,
     int? thumbSize,
   }) async {
     Map<String, dynamic> queryParameters = {
+      "color": colors,
       "thumbsize": thumbSize,
     };
     var resourceUri = "$_resourceUri/${Uri.encodeComponent(name)}";

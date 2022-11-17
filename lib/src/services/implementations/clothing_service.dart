@@ -22,7 +22,9 @@ class ClothingServiceImpl extends ApiService implements ClothingService {
   }) async {
     Map<String, dynamic> queryParameters = {
       "category": category?.toValue(),
-      "color": colors
+      "color": colors,
+      "style": styles,
+      "labeltheme": labelTheme,
     };
     var response = await processListRequest(_resourceUri, queryParameters);
     return response.map((e) => Clothing.fromJson(e)).toList();
@@ -38,6 +40,8 @@ class ClothingServiceImpl extends ApiService implements ClothingService {
     Map<String, dynamic> queryParameters = {
       "category": category?.toValue(),
       "color": colors,
+      "style": styles,
+      "labeltheme": labelTheme,
       "excludedetails": true
     };
     var response = await processListRequest(_resourceUri, queryParameters);

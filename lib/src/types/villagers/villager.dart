@@ -4,7 +4,6 @@ import 'package:json_annotation/json_annotation.dart';
 import 'gender.dart';
 import 'hobby.dart';
 import 'personality.dart';
-import 'species.dart';
 import 'zodiac.dart';
 
 part 'villager.g.dart';
@@ -42,6 +41,7 @@ class Villager extends Equatable {
   /// The villager's personality.
   /// Note that there are no official in-game personality names; these are names that are commonly used by the community.
   /// In the case of 'sisterly', other common names include 'big sis' and 'uchi'
+  @JsonKey(fromJson: _stringToPersonality)
   final Personality personality;
 
   /// Gender of the villager. In Animal Crossing, only male and female are used.
@@ -140,6 +140,13 @@ class Villager extends Equatable {
     this.newHorizonDetails,
     this.appearances,
   );
+
+  static Personality _stringToPersonality(Object obj) {
+    final value = obj.toString();
+    if ("Big sister" == value) return Personality.sisterly;
+    return _$PersonalityEnumMap.keys
+        .firstWhere((element) => _$PersonalityEnumMap[element] == value);
+  }
 
   factory Villager.fromJson(Map<String, dynamic> json) =>
       _$VillagerFromJson(json);
@@ -241,4 +248,80 @@ class NewHorizonDetails extends Equatable {
         houseMusic,
         houseMusicNote,
       ];
+}
+
+@JsonEnum()
+enum Species {
+  @JsonValue("Anteater")
+  anteater,
+  @JsonValue("Bear")
+  bear,
+  @JsonValue("Bird")
+  bird,
+  @JsonValue("Bull")
+  bull,
+  @JsonValue("Cat")
+  cat,
+  @JsonValue("Bear cub")
+  cub,
+  @JsonValue("Chicken")
+  chicken,
+  @JsonValue("Cow")
+  cow,
+  @JsonValue("Alligator")
+  alligator,
+  @JsonValue("Deer")
+  deer,
+  @JsonValue("Dog")
+  dog,
+  @JsonValue("Duck")
+  duck,
+  @JsonValue("Elephant")
+  elephant,
+  @JsonValue("Frog")
+  frog,
+  @JsonValue("Goat")
+  goat,
+  @JsonValue("Gorilla")
+  gorilla,
+  @JsonValue("Hamster")
+  hamster,
+  @JsonValue("Hippo")
+  hippo,
+  @JsonValue("Horse")
+  horse,
+  @JsonValue("Koala")
+  koala,
+  @JsonValue("Kangaroo")
+  kangaroo,
+  @JsonValue("Lion")
+  lion,
+  @JsonValue("Monkey")
+  monkey,
+  @JsonValue("Mouse")
+  mouse,
+  @JsonValue("Octopus")
+  octopus,
+  @JsonValue("Ostrich")
+  ostrich,
+  @JsonValue("Eagle")
+  eagle,
+  @JsonValue("Penguin")
+  penguin,
+  @JsonValue("Pig")
+  pig,
+  @JsonValue("Rabbit")
+  rabbit,
+  @JsonValue("Rhinoceros")
+  rhino,
+  @JsonValue("Sheep")
+  sheep,
+  @JsonValue("Squirrel")
+  squirrel,
+  @JsonValue("Tiger")
+  tiger,
+  @JsonValue("Wolf")
+  wolf;
+
+  String toValue() => _$SpeciesEnumMap[this]!;
 }

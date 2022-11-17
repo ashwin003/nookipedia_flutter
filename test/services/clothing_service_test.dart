@@ -198,7 +198,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "category": "Dress-up",
+            "category": "Dress-Up",
           },
           options: anyNamed('options'),
         ),
@@ -222,7 +222,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "category": "Dress-up",
+            "category": "Dress-Up",
           },
           options: anyNamed('options'),
         ),
@@ -360,7 +360,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "category": "Dress-up",
+            "category": "Dress-Up",
             "excludedetails": true,
           },
           options: anyNamed('options'),
@@ -385,7 +385,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "category": "Dress-up",
+            "category": "Dress-Up",
             "excludedetails": true,
           },
           options: anyNamed('options'),

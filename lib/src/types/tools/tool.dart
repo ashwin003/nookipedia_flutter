@@ -15,8 +15,7 @@ class Tool extends Equatable {
   final String name;
 
   /// How many times the tool can be used before breaking.
-  @JsonKey(fromJson: _stringToInt)
-  final int uses;
+  final String uses;
 
   /// The base value that the item provides to a player's Happy Home Academy score when placed in their home.
   @JsonKey(name: "hha_base")
@@ -77,8 +76,6 @@ class Tool extends Equatable {
   factory Tool.fromJson(Map<String, dynamic> json) => _$ToolFromJson(json);
 
   Map<String, dynamic> toJson() => _$ToolToJson(this);
-
-  static int _stringToInt(Object obj) => int.parse(obj.toString());
 
   @override
   List<Object?> get props => [

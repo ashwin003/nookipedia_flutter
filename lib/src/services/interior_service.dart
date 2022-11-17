@@ -14,6 +14,7 @@ abstract class InteriorService {
   /// Retrieve information about a specific [Interior] item in *Animal Crossing: New Horizons*.
   Future<Interior> get({
     required String name,
+    List<String>? colors,
     int? thumbSize,
   });
 }

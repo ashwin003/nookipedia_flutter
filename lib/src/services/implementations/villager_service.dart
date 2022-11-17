@@ -49,7 +49,7 @@ class VillagerServiceImpl extends ApiService implements VillagerService {
   }) async {
     Map<String, dynamic> queryParameters = {
       "name": name,
-      "species": species?.name,
+      "species": species?.toValue(),
       "personality": personality,
       "game": game,
       "birthmonth": birthMonth,

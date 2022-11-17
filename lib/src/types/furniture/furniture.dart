@@ -15,6 +15,7 @@ class Furniture extends Equatable {
   final String name;
 
   /// The category of item as shown in the player's inventory.
+  @JsonKey(fromJson: _stringToCategory)
   final FurnitureCategory category;
 
   /// The furniture series the item is a part of, if any.
@@ -157,6 +158,13 @@ class Furniture extends Equatable {
 
   static double _stringToDouble(Object obj) => double.parse(obj.toString());
 
+  static FurnitureCategory _stringToCategory(Object obj) {
+    final value = obj.toString();
+    if ("Wall-Mounted" == value) return FurnitureCategory.wallMounted;
+    return _$FurnitureCategoryEnumMap.keys
+        .firstWhere((element) => _$FurnitureCategoryEnumMap[element] == value);
+  }
+
   @override
   List<Object?> get props => [
         url,
@@ -199,7 +207,9 @@ enum FurnitureCategory {
   @JsonValue("Miscellaneous")
   miscellaneous,
   @JsonValue("Wall-mounted")
-  wallMounted;
+  wallMounted,
+  @JsonValue("Ceiling Decor")
+  ceilingDecor;
 
   String toValue() => _$FurnitureCategoryEnumMap[this]!;
 }

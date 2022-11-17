@@ -232,7 +232,7 @@ void main() {
       when(
         dio.get(
           resourceUrl,
-          queryParameters: {"species": "ostrich"},
+          queryParameters: {"species": "Ostrich"},
           options: anyNamed('options'),
         ),
       ).thenAnswer(
@@ -251,7 +251,7 @@ void main() {
       verify(
         dio.get(
           resourceUrl,
-          queryParameters: {"species": "ostrich"},
+          queryParameters: {"species": "Ostrich"},
           options: anyNamed('options'),
         ),
       ).called(1);

@@ -84,6 +84,9 @@ class NookipediaClient {
   /// Provides services related to the `fossils` in the Animal Crossing series.
   late FossilService fossils;
 
+  /// Provides services related to the `photos` in the Animal Crossing series.
+  late PhotoService photos;
+
   void _init(String apiKey, String version) {
     final dio = Dio(
       BaseOptions(
@@ -115,6 +118,16 @@ class NookipediaClient {
       version: version,
       dio: dio,
     );
+    interior = InteriorServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
+    tools = ToolServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
     items = ItemServiceImpl(
       apiKey: apiKey,
       version: version,
@@ -141,6 +154,11 @@ class NookipediaClient {
       dio: dio,
     );
     fossils = FossilServiceImpl(
+      apiKey: apiKey,
+      version: version,
+      dio: dio,
+    );
+    photos = PhotoServiceImpl(
       apiKey: apiKey,
       version: version,
       dio: dio,

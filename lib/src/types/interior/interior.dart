@@ -54,9 +54,11 @@ class Interior extends Equatable {
   final String notes;
 
   /// The number of widthwise grid spaces this item takes up.
+  @JsonKey(fromJson: _toString)
   final String gridWidth;
 
   /// The number of lengthwise grid spaces this item takes up.
+  @JsonKey(fromJson: _toString)
   final String gridLength;
 
   /// A list of themes (if any) that the item belongs to.
@@ -93,6 +95,8 @@ class Interior extends Equatable {
 
   factory Interior.fromJson(Map<String, dynamic> json) =>
       _$InteriorFromJson(json);
+
+  static String _toString(Object obj) => obj.toString();
 
   Map<String, dynamic> toJson() => _$InteriorToJson(this);
 

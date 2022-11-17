@@ -7,6 +7,7 @@ import 'package:nookipedia_flutter/src/extensions/string_extensions.dart';
 import 'package:nookipedia_flutter/src/services/implementations/insect_service.dart';
 import 'package:nookipedia_flutter/src/services/insect_service.dart';
 import 'package:nookipedia_flutter/src/types/critter/availability.dart';
+import 'package:nookipedia_flutter/src/types/critter/critter.dart';
 import 'package:nookipedia_flutter/src/types/critter/insect.dart';
 import 'package:nookipedia_flutter/src/types/critter/month.dart';
 import 'package:nookipedia_flutter/src/types/critter/rarity.dart';
@@ -93,6 +94,23 @@ void main() {
     }
   };
 
+  final insectMonthJson = {
+    "month": "10",
+    "north": [insectJson],
+    "south": [insectJson]
+  };
+
+  final monthNames = {
+    "month": "10",
+    "north": [name],
+    "south": [name]
+  };
+  const critterMonth = CritterByMonth(
+    "10",
+    [name],
+    [name],
+  );
+
   CritterMonthlyAvailability getCritterMonthlyAvailability(int month) {
     return CritterMonthlyAvailability(
       monthNumber: month,
@@ -145,6 +163,12 @@ void main() {
     sellFlick: 4500,
   );
 
+  final insectMonth = InsectByMonth(
+    "10",
+    [insect],
+    [insect],
+  );
+
   setUpAll(() {
     insectService = InsectServiceImpl(
       apiKey: apiKey,
@@ -189,7 +213,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
           },
           options: anyNamed('options'),
         ),
@@ -207,7 +231,7 @@ void main() {
 
       expect(
           await insectService.fetchDetails(
-            month: "january",
+            thumbSize: 100,
           ),
           [insect]);
 
@@ -215,7 +239,40 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('for a month', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "month": "October",
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: insectMonthJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(await insectService.fetchDetailsForMonth(month: "October"),
+          insectMonth);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "month": "October",
           },
           options: anyNamed('options'),
         ),
@@ -228,7 +285,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
           },
           options: anyNamed('options'),
         ),
@@ -244,7 +301,7 @@ void main() {
 
       expect(
         () async => await insectService.fetchDetails(
-          month: "january",
+          thumbSize: 100,
         ),
         throwsA(
           isA<NookipediaException>(),
@@ -255,7 +312,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
           },
           options: anyNamed('options'),
         ),
@@ -297,7 +354,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
             "excludedetails": true,
           },
           options: anyNamed('options'),
@@ -314,7 +371,7 @@ void main() {
 
       expect(
           await insectService.fetchNames(
-            month: "january",
+            thumbSize: 100,
           ),
           [name]);
 
@@ -322,9 +379,38 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
             "excludedetails": true,
           },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('for a month', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"month": "October", "excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: monthNames,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(await insectService.fetchNamesForMonth(month: "October"),
+          critterMonth);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"month": "October", "excludedetails": true},
           options: anyNamed('options'),
         ),
       ).called(1);
@@ -336,7 +422,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
             "excludedetails": true,
           },
           options: anyNamed('options'),
@@ -353,7 +439,7 @@ void main() {
 
       expect(
         () async => await insectService.fetchNames(
-          month: "january",
+          thumbSize: 100,
         ),
         throwsA(
           isA<NookipediaException>(),
@@ -364,7 +450,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
             "excludedetails": true,
           },
           options: anyNamed('options'),

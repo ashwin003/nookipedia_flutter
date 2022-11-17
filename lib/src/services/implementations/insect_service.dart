@@ -1,3 +1,5 @@
+import 'package:nookipedia_flutter/src/types/critter/critter.dart';
+
 import '../../types/critter/insect.dart';
 import '../insect_service.dart';
 import 'api_service.dart';
@@ -11,9 +13,8 @@ class InsectServiceImpl extends ApiService implements InsectService {
   });
 
   @override
-  Future<List<Insect>> fetchDetails({String? month, int? thumbSize}) async {
+  Future<List<Insect>> fetchDetails({int? thumbSize}) async {
     Map<String, dynamic> queryParameters = {
-      "month": month,
       "thumbsize": thumbSize,
     };
     var response = await processListRequest(_resourceUri, queryParameters);
@@ -21,9 +22,8 @@ class InsectServiceImpl extends ApiService implements InsectService {
   }
 
   @override
-  Future<List<String>> fetchNames({String? month, int? thumbSize}) async {
+  Future<List<String>> fetchNames({int? thumbSize}) async {
     Map<String, dynamic> queryParameters = {
-      "month": month,
       "thumbsize": thumbSize,
       "excludedetails": true
     };
@@ -39,5 +39,28 @@ class InsectServiceImpl extends ApiService implements InsectService {
     var resourceUri = "$_resourceUri/${Uri.encodeComponent(name)}";
     var response = await processObjectRequest(resourceUri, queryParameters);
     return Insect.fromJson(response, super.version);
+  }
+
+  @override
+  Future<InsectByMonth> fetchDetailsForMonth(
+      {required String month, int? thumbSize}) async {
+    Map<String, dynamic> queryParameters = {
+      "month": month,
+      "thumbsize": thumbSize,
+    };
+    var response = await processObjectRequest(_resourceUri, queryParameters);
+    return InsectByMonth.fromJson(response, version);
+  }
+
+  @override
+  Future<CritterByMonth> fetchNamesForMonth(
+      {required String month, int? thumbSize}) async {
+    Map<String, dynamic> queryParameters = {
+      "month": month,
+      "thumbsize": thumbSize,
+      "excludedetails": true
+    };
+    var response = await processObjectRequest(_resourceUri, queryParameters);
+    return CritterByMonth.fromJson(response);
   }
 }

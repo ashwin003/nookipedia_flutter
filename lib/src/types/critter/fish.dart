@@ -1,3 +1,5 @@
+import 'package:equatable/equatable.dart';
+
 import 'critter.dart';
 
 class Fish extends Critter {
@@ -51,5 +53,36 @@ class Fish extends Critter {
         south: critter.south,
         sellCJ: sellCJ,
         shadowSize: shadowSize);
+  }
+}
+
+class FishByMonth extends Equatable {
+  final String month;
+  final List<Fish> north;
+  final List<Fish> south;
+
+  const FishByMonth(
+    this.month,
+    this.north,
+    this.south,
+  );
+
+  @override
+  List<Object?> get props => [
+        month,
+        north,
+        south,
+      ];
+
+  factory FishByMonth.fromJson(Map<String, dynamic> json, String version) {
+    return FishByMonth(
+      json["month"].toString(),
+      List<Map<String, dynamic>>.from(json["north"])
+          .map((e) => Fish.fromJson(e, version))
+          .toList(),
+      List<Map<String, dynamic>>.from(json["south"])
+          .map((e) => Fish.fromJson(e, version))
+          .toList(),
+    );
   }
 }

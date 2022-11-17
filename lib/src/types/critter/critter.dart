@@ -115,3 +115,30 @@ class Critter extends Equatable {
   @override
   bool get stringify => true;
 }
+
+class CritterByMonth extends Equatable {
+  final String month;
+  final List<String> north;
+  final List<String> south;
+
+  const CritterByMonth(
+    this.month,
+    this.north,
+    this.south,
+  );
+
+  @override
+  List<Object?> get props => [
+        month,
+        north,
+        south,
+      ];
+
+  factory CritterByMonth.fromJson(Map<String, dynamic> json) {
+    return CritterByMonth(
+      json["month"].toString(),
+      List<String>.from(json["north"]),
+      List<String>.from(json["south"]),
+    );
+  }
+}

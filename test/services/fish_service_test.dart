@@ -7,6 +7,7 @@ import 'package:nookipedia_flutter/src/extensions/string_extensions.dart';
 import 'package:nookipedia_flutter/src/services/fish_service.dart';
 import 'package:nookipedia_flutter/src/services/implementations/fish_service.dart';
 import 'package:nookipedia_flutter/src/types/critter/availability.dart';
+import 'package:nookipedia_flutter/src/types/critter/critter.dart';
 import 'package:nookipedia_flutter/src/types/critter/fish.dart';
 import 'package:nookipedia_flutter/src/types/critter/month.dart';
 import 'package:nookipedia_flutter/src/types/critter/rarity.dart';
@@ -89,6 +90,22 @@ void main() {
     }
   };
 
+  final fishMonthJson = {
+    "month": "10",
+    "north": [fishJson],
+    "south": [fishJson]
+  };
+
+  final monthNames = {
+    "month": "10",
+    "north": [name],
+    "south": [name]
+  };
+  const critterMonth = CritterByMonth(
+    "10",
+    [name],
+    [name],
+  );
   CritterMonthlyAvailability getCritterMonthlyAvailability(int month) {
     return CritterMonthlyAvailability(
         monthNumber: month + 1,
@@ -145,6 +162,12 @@ void main() {
     shadowSize: "Small",
   );
 
+  final fishMonth = FishByMonth(
+    "10",
+    [fish],
+    [fish],
+  );
+
   setUpAll(() {
     fishService = FishServiceImpl(
       apiKey: apiKey,
@@ -189,7 +212,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
           },
           options: anyNamed('options'),
         ),
@@ -207,7 +230,7 @@ void main() {
 
       expect(
           await fishService.fetchDetails(
-            month: "january",
+            thumbSize: 100,
           ),
           [fish]);
 
@@ -215,7 +238,40 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
+          },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('for a month', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "month": "October",
+          },
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: fishMonthJson,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await fishService.fetchDetailsForMonth(month: "October"), fishMonth);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {
+            "month": "October",
           },
           options: anyNamed('options'),
         ),
@@ -228,7 +284,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
           },
           options: anyNamed('options'),
         ),
@@ -244,7 +300,7 @@ void main() {
 
       expect(
         () async => await fishService.fetchDetails(
-          month: "january",
+          thumbSize: 100,
         ),
         throwsA(
           isA<NookipediaException>(),
@@ -255,7 +311,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
           },
           options: anyNamed('options'),
         ),
@@ -297,7 +353,7 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
             "excludedetails": true,
           },
           options: anyNamed('options'),
@@ -314,7 +370,7 @@ void main() {
 
       expect(
           await fishService.fetchNames(
-            month: "january",
+            thumbSize: 100,
           ),
           [name]);
 
@@ -322,9 +378,38 @@ void main() {
         dio.get(
           resourceUrl,
           queryParameters: {
-            "month": "january",
+            "thumbsize": 100,
             "excludedetails": true,
           },
+          options: anyNamed('options'),
+        ),
+      ).called(1);
+    });
+
+    test('for a month', () async {
+      when(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"month": "October", "excludedetails": true},
+          options: anyNamed('options'),
+        ),
+      ).thenAnswer(
+        (realInvocation) async => Response(
+          statusCode: 200,
+          data: monthNames,
+          requestOptions: RequestOptions(
+            path: resourceUrl,
+          ),
+        ),
+      );
+
+      expect(
+          await fishService.fetchNamesForMonth(month: "October"), critterMonth);
+
+      verify(
+        dio.get(
+          resourceUrl,
+          queryParameters: {"month": "October", "excludedetails": true},
           options: anyNamed('options'),
         ),
       ).called(1);

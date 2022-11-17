@@ -1,15 +1,24 @@
+import '../types/critter/critter.dart';
 import '../types/critter/insect.dart';
 
 abstract class InsectService {
   /// Get a list of all [Insect] and their details in *Animal Crossing: New Horizons*.
   Future<List<Insect>> fetchDetails({
-    String? month,
+    int? thumbSize,
+  });
+
+  Future<InsectByMonth> fetchDetailsForMonth({
+    required String month,
     int? thumbSize,
   });
 
   /// Get a list of all [Insect] names in *Animal Crossing: New Horizons*.
   Future<List<String>> fetchNames({
-    String? month,
+    int? thumbSize,
+  });
+
+  Future<CritterByMonth> fetchNamesForMonth({
+    required String month,
     int? thumbSize,
   });
 

@@ -1,3 +1,5 @@
+import 'package:nookipedia_flutter/src/types/critter/critter.dart';
+
 import '../../types/critter/sea.dart';
 import '../sea_creature_service.dart';
 import 'api_service.dart';
@@ -11,10 +13,8 @@ class SeaCreatureServiceImpl extends ApiService implements SeaCreatureService {
   });
 
   @override
-  Future<List<SeaCreature>> fetchDetails(
-      {String? month, int? thumbSize}) async {
+  Future<List<SeaCreature>> fetchDetails({int? thumbSize}) async {
     Map<String, dynamic> queryParameters = {
-      "month": month,
       "thumbsize": thumbSize,
     };
     var response = await processListRequest(_resourceUri, queryParameters);
@@ -22,9 +22,8 @@ class SeaCreatureServiceImpl extends ApiService implements SeaCreatureService {
   }
 
   @override
-  Future<List<String>> fetchNames({String? month, int? thumbSize}) async {
+  Future<List<String>> fetchNames({int? thumbSize}) async {
     Map<String, dynamic> queryParameters = {
-      "month": month,
       "thumbsize": thumbSize,
       "excludedetails": true
     };
@@ -40,5 +39,28 @@ class SeaCreatureServiceImpl extends ApiService implements SeaCreatureService {
     var resourceUri = "$_resourceUri/${Uri.encodeComponent(name)}";
     var response = await processObjectRequest(resourceUri, queryParameters);
     return SeaCreature.fromJson(response, super.version);
+  }
+
+  @override
+  Future<SeaCreatureByMonth> fetchDetailsForMonth(
+      {required String month, int? thumbSize}) async {
+    Map<String, dynamic> queryParameters = {
+      "month": month,
+      "thumbsize": thumbSize,
+    };
+    var response = await processObjectRequest(_resourceUri, queryParameters);
+    return SeaCreatureByMonth.fromJson(response, version);
+  }
+
+  @override
+  Future<CritterByMonth> fetchNamesForMonth(
+      {required String month, int? thumbSize}) async {
+    Map<String, dynamic> queryParameters = {
+      "month": month,
+      "thumbsize": thumbSize,
+      "excludedetails": true
+    };
+    var response = await processObjectRequest(_resourceUri, queryParameters);
+    return CritterByMonth.fromJson(response);
   }
 }

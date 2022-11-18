@@ -46,6 +46,7 @@ abstract class ApiService {
     if (response.statusCode != 200) {
       final error = NookipediaError.fromJson(response.data);
       throw NookipediaException(
+        statusCode: response.statusCode,
         title: error.title,
         details: error.details,
       );
@@ -59,6 +60,7 @@ abstract class ApiService {
     if (response.statusCode != 200) {
       final error = NookipediaError.fromJson(response.data);
       throw NookipediaException(
+        statusCode: response.statusCode,
         title: error.title,
         details: error.details,
       );

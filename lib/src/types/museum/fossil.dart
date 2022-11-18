@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'fossil.g.dart';
 
+/// Individual fossils found within Animal Crossing New Horizons.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Fossil extends Equatable {
   /// The name of the fossil.
@@ -68,6 +69,7 @@ class Fossil extends Equatable {
       ];
 }
 
+/// Fossil Groups found in Animal Crossing New Horizons.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class FossilGroup extends Equatable {
   final String name;

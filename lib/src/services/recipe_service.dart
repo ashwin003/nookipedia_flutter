@@ -1,5 +1,6 @@
 import '../types/recipes/recipe.dart';
 
+/// Retrieves [Recipe] information available in *Animal Crossing: New Horizons*.
 abstract class RecipeService {
   /// Get a list of all [Recipe]s and their details in *Animal Crossing: New Horizons*.
   Future<List<Recipe>> fetchDetails({

@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variation.g.dart';
 
+/// Variations of the [Tool] available.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class ToolVariation extends Equatable {
   final String variation;

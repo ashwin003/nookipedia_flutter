@@ -1,5 +1,6 @@
 import '../types/museum/artwork.dart';
 
+/// Retrieves [Artwork] information available in *Animal Crossing: New Horizons*
 abstract class ArtworkService {
   /// Get a list of all [Artwork] and their details in *Animal Crossing: New Horizons*.
   Future<List<Artwork>> fetchDetails({

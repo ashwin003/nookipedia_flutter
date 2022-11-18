@@ -1,5 +1,6 @@
 import '../types/clothing/index.dart';
 
+/// Retrieves [Clothing] information available in *Animal Crossing: New Horizons*.
 abstract class ClothingService {
   /// Get a list of all [Clothing] items and their details in *Animal Crossing: New Horizons*.
   Future<List<Clothing>> fetchDetails({

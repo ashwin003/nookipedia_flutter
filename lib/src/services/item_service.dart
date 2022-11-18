@@ -1,6 +1,6 @@
 import '../types/items/index.dart';
 
-/// Get a list of all miscellaneous [Item]s (such as materials, star fragments, fruits, fences, and plants) and their details in *Animal Crossing: New Horizons*.
+/// Retrieves [Item] information available in *Animal Crossing: New Horizons*.
 abstract class ItemService {
   /// Get a list of all miscellaneous [Item]s (such as materials, star fragments, fruits, fences, and plants) and their details in *Animal Crossing: New Horizons*.
   Future<List<Item>> fetchDetails();

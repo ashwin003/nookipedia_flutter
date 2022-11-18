@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'material.g.dart';
 
+/// Materials needed to prepare a specific [Recipe].
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Material extends Equatable {
   final String name;

@@ -4,6 +4,7 @@ import '../../extensions/string_extensions.dart';
 
 import 'month.dart';
 
+/// Availability of the [Critter] for any particular month.
 class CritterMonthlyAvailability extends Equatable {
   final int monthNumber;
   final String monthName;
@@ -35,6 +36,7 @@ class CritterMonthlyAvailability extends Equatable {
       ];
 }
 
+/// Overall availability of the [Critter].
 class CritterAvailability extends Equatable {
   final bool availableAllYear;
   final List<CritterMonthlyAvailability> availability;

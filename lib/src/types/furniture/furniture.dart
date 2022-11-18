@@ -6,6 +6,7 @@ import 'variation.dart';
 
 part 'furniture.g.dart';
 
+/// Furnitures available in Animal Crossing New Horizons.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Furniture extends Equatable {
   /// Link to the respective Nookipedia article.
@@ -200,6 +201,7 @@ class Furniture extends Equatable {
       ];
 }
 
+/// Category of the [Furniture] items.
 @JsonEnum()
 enum FurnitureCategory {
   @JsonValue("Housewares")

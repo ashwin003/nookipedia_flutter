@@ -6,6 +6,7 @@ import 'event_type.dart';
 
 part 'event.g.dart';
 
+/// Any festivity, season, or event that occurs within Animal Crossing New Horizons.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class AnimalCrossingEvent extends Equatable {
   /// The description of the event.

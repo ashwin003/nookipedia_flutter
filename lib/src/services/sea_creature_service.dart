@@ -1,12 +1,14 @@
 import '../types/critter/critter.dart';
 import '../types/critter/sea.dart';
 
+/// Get a list of all [SeaCreature]s and their details in *Animal Crossing: New Horizons*.
 abstract class SeaCreatureService {
   /// Get a list of all [SeaCreature] and their details in *Animal Crossing: New Horizons*.
   Future<List<SeaCreature>> fetchDetails({
     int? thumbSize,
   });
 
+  /// Get a list of all [SeaCreature]s and their details based on their availability in [month] for the different [Hemisphere]s in *Animal Crossing: New Horizons*.
   Future<SeaCreatureByMonth> fetchDetailsForMonth({
     required String month,
     int? thumbSize,
@@ -17,6 +19,7 @@ abstract class SeaCreatureService {
     int? thumbSize,
   });
 
+  /// Get a list of all [SeaCreature] names based on their availability in [month] for the different [Hemisphere]s in *Animal Crossing: New Horizons*.
   Future<CritterByMonth> fetchNamesForMonth({
     required String month,
     int? thumbSize,

@@ -1,5 +1,6 @@
 import '../types/interior/index.dart';
 
+/// Retrieves [Interior] information available in *Animal Crossing: New Horizons*.
 abstract class InteriorService {
   /// Get a list of all [Interior] items (flooring, wallpaper, and rugs) and their details in *Animal Crossing: New Horizons*.
   Future<List<Interior>> fetchDetails({

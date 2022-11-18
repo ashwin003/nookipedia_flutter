@@ -1,5 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 
+/// The [Villager]'s personality.
+@JsonEnum()
 enum Personality {
   @JsonValue("Lazy")
   lazy,

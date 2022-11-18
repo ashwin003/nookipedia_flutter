@@ -1,5 +1,6 @@
 import '../types/tools/tool.dart';
 
+/// Retrieves information about all [Tool]s available in *Animal Crossing: New Horizons*.
 abstract class ToolService {
   /// Get a list of all [Tool]s and their details in *Animal Crossing: New Horizons*.
   Future<List<Tool>> fetchDetails();

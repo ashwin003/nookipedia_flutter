@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'variation.g.dart';
 
+/// Variations available for a particular [Furniture].
 @JsonSerializable(fieldRename: FieldRename.snake)
 class FurnitureVariation extends Equatable {
   final String variation;

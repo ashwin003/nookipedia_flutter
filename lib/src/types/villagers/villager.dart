@@ -8,6 +8,7 @@ import 'zodiac.dart';
 
 part 'villager.g.dart';
 
+/// A Villager in the Animal Crossing series.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Villager extends Equatable {
   /// Name of the villager.
@@ -179,6 +180,7 @@ class Villager extends Equatable {
       ];
 }
 
+/// Vilager information specific to New Horizons.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class NewHorizonDetails extends Equatable {
   final String imageUrl;
@@ -250,6 +252,7 @@ class NewHorizonDetails extends Equatable {
       ];
 }
 
+/// The [Villager]'s species
 @JsonEnum()
 enum Species {
   @JsonValue("Anteater")

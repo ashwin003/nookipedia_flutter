@@ -100,6 +100,7 @@ class Clothing extends Equatable {
       ];
 }
 
+/// Category of the [Clothing] items.
 @JsonEnum()
 enum ClothingCategory {
   @JsonValue("Other")

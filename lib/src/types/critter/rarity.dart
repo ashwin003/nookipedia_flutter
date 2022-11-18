@@ -1,3 +1,4 @@
+/// Rarity of the [Critter]s.
 enum Rarity {
   unspecified,
   unknown,
@@ -8,6 +9,7 @@ enum Rarity {
   veryRare,
 }
 
+/// @nodoc
 const stringToRarityMap = {
   "": Rarity.unspecified,
   "Unknown": Rarity.unknown,

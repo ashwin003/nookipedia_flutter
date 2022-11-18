@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
+/// Star sign of the [Villager]s.
 @JsonEnum()
 enum Zodiac {
   @JsonValue("Aries")

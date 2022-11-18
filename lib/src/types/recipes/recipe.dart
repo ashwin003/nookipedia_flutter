@@ -6,6 +6,7 @@ import 'material.dart';
 
 part 'recipe.g.dart';
 
+/// The DIY recipes that can be learnt.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Recipe extends Equatable {
   /// Link to the respective Nookipedia article.

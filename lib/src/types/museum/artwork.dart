@@ -3,6 +3,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'artwork.g.dart';
 
+/// All the Artwork available in Animal Crossing New Horizons.
+/// Typically sold by Jolly Redd in his Treasuse Trawler.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Artwork extends Equatable {
   /// Name of the artwork.

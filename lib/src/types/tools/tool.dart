@@ -6,6 +6,7 @@ import 'variation.dart';
 
 part 'tool.g.dart';
 
+/// A tool available in Animal Crossing New Horizons.
 @JsonSerializable(fieldRename: FieldRename.snake)
 class Tool extends Equatable {
   /// Link to the respective Nookipedia article.

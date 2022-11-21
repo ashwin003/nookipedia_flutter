@@ -7,7 +7,7 @@ enum EventType {
   @JsonValue("Event")
   event,
 
-  /// The seasonal events in which exclusive item(s) are available via []Nook Shopping](https://nookipedia.com/wiki/Nook_Shopping).
+  /// The seasonal events in which exclusive item(s) are available via [Nook Shopping](https://nookipedia.com/wiki/Nook_Shopping).
   @JsonValue("Nook Shopping")
   nookShopping,
 

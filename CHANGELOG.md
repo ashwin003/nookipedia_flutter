@@ -31,3 +31,7 @@ Improves quality of tests and increases code coverage
 # 0.2.4
 
 Adds wrapper service for fossil endpoints
+
+# 0.2.5
+
+Minor documentation updates.

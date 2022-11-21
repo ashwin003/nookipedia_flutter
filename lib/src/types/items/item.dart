@@ -13,7 +13,7 @@ class Item extends Equatable {
   /// The name of the item.
   final String name;
 
-  /// Image of the interior. dodo.ac is Nookipedia's CDN server.
+  /// Image of the item. dodo.ac is Nookipedia's CDN server.
   final String imageUrl;
 
   /// How much the item can stack up to in a single inventory slot.
@@ -23,7 +23,7 @@ class Item extends Equatable {
   @JsonKey(name: "hha_base")
   final int happyHomeAcademyBase;
 
-  /// The number of Bells the interior can be sold to Nook's store for.
+  /// The number of Bells the item can be sold to Nook's store for.
   final int sell;
 
   /// Whether or not the item is a fence or not.
@@ -49,10 +49,10 @@ class Item extends Equatable {
   /// Any additional miscellaneous information about the item, such as a name change from a past update.
   final String notes;
 
-  /// Where the clothing may be obtained from (could be multiple sources).
+  /// Where the item may be obtained from (could be multiple sources).
   final List<Availability> availability;
 
-  /// An array of prices, for when the interior may be purchased with Bells, Nook Miles, etc..
+  /// An array of prices, for when the item may be purchased with Bells, Nook Miles, etc..
   final List<Price> buy;
 
   const Item(

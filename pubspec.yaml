@@ -1,6 +1,6 @@
 name: nookipedia_flutter
-description: Flutter wrapper for Nookipedia API.
-version: 0.2.4
+description: Flutter wrapper for Nookipedia API. The Nookipedia API provides endpoints for retrieving Animal Crossing data pulled from the Nookipedia wiki.
+version: 0.2.5
 homepage: https://github.com/ashwin003/nookipedia_flutter
 repository: https://github.com/ashwin003/nookipedia_flutter
 issue_tracker: https://github.com/ashwin003/nookipedia_flutter/issues

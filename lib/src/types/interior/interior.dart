@@ -65,7 +65,7 @@ class Interior extends Equatable {
   final List<String> themes;
   final List<String> colors;
 
-  /// Where the clothing may be obtained from (could be multiple sources).
+  /// Where the interior may be obtained from (could be multiple sources).
   final List<Availability> availability;
 
   /// An array of prices, for when the interior may be purchased with Bells, Nook Miles, etc

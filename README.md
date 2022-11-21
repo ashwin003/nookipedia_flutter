@@ -26,7 +26,6 @@ Contains wrapper methods for the following endpoints:
 8. Recipes
 9. Tools
 10. Villagers
-10. Villagers
 11. Insects
 12. Fish
 13. Sea Creatures

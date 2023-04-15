@@ -35,3 +35,7 @@ Adds wrapper service for fossil endpoints
 # 0.2.5
 
 Minor documentation updates.
+
+# 0.2.6
+
+Updating dependencies

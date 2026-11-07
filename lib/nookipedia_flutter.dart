@@ -1,4 +1,4 @@
 /// A dart wrapper for the [Nookipedia API](https://api.nookipedia.com/)
-library nookipedia_flutter;
+library;
 
 export 'src/index.dart';

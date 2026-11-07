@@ -39,3 +39,7 @@ Minor documentation updates.
 # 0.2.6
 
 Updating dependencies
+
+# 0.2.7
+
+Updating dependencies and flutter platform
